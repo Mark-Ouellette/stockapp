@@ -1,2 +1,21 @@
-<h1>Stock App</h1>
-<p>This is my gangsta stock app</p>
+<%= form_tag root_path, :method => 'POST' do %>
+    <div class="form-group">
+        <%= text_field_tag 'id', nil, placeholder: 'Enter Ticker', size: 50, class: 'form-control' %>
+        <%= submit_tag 'Submit', class: "btn btn-default" %>
+    </div>
+<% end %>
+<br>
+<% if @stock %>
+    <Strong>Company Name: </Strong><%= @stock.company_name %><br>
+    <Strong>Exchange: </Strong><%= @stock.primary_exchange %><br>
+    <Strong>Sector: </Strong><%= @stock.sector %><br>
+    <Strong>Open Price: </Strong><%= @stock.open %><br>
+    <Strong>Close Price: </Strong><%= @stock.close %><br>
+    <Strong>Market Cap: </Strong><%= @stock.market_cap %><br>
+<% elsif @nothing %>
+    <%= @nothing %>
+<% end %>
+
+<% if @error %>
+    <%= @error %>
+<% end %>
