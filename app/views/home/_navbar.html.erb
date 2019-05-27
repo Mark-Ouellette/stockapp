@@ -36,6 +36,19 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
+        
+        <% if user_signed_in? %>
+          <li><%= link_to "Edit User", edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "Add Stocks", new_stock_path %></li>
+          <li><%= link_to "My Stocks", stocks_path %></li>
+
+
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+        <% end %>
+       
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "About Us", home_about_path %></li>
         <li class="dropdown">

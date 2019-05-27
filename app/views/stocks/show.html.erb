@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Company:</th>
+      <th>Exchange: </th>
+      <th>Sector: </th>
+      <th>Open: </th>
+      <th>Close: </th>
+      <th>Market Cap: </th>
+    </tr>
+  </thead>
+<tbody>
+  <%  @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
+    <%  if @stock_quote == nil %>
+      <% @error = "that stock quote does not exist" %>
+      <tr>
+        <td><%= "Error" %></td>
+        <td><%= "N/A" %></td>
+        <td><%= "N/A" %></td>
+        <td><%= "N/A" %></td>
+        <td><%= "N/A" %></td>
+        <td><%= "N/A" %></td>
+      </tr>
+    <% else %>
+      <tr>
+        <td><%= @stock_quote.company_name %></td>
+        <td><%= @stock_quote.primary_exchange %></td>
+        <td><%= @stock_quote.sector %></td>
+        <td><%= @stock_quote.open %></td>
+        <td><%= @stock_quote.close %></td>
+        <td><%= @stock_quote.market_cap %></td>
+      </tr>
+    <% end %>
+<tbody>
+
+<p>
+  <strong>User:</strong>
+  <%= @stock.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
